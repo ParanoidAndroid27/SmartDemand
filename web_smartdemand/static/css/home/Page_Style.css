@@ -1,0 +1,63 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f8f9fa;
+  color: #212529;
+}
+
+/* Banner */
+.banner-img {
+  width: 100%;
+  height: 600px;
+  object-fit: cover;
+  object-position: center;
+  border-bottom: 5px solid #007bff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Carrusel */
+.carrusel-section {
+  background-color: #f0f0f0;
+}
+
+.carrusel-contenedor {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.carousel-img {
+  max-width: 280px;
+  height: 180px;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.carousel-img:hover {
+  transform: scale(1.05);
+}
+
+.carrusel-section h2 {
+  font-size: 1.8rem;
+}
+
+/* Productos destacados */
+.productos-destacados {
+  background-color: #2c1e5f;
+  color: white;
+}
+
+.card {
+  transition: transform 0.3s ease;
+  border-radius: 12px;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+/* Footer */
+.footer {
+  background-color: #e9ecef;
+  border-top: 2px solid #ccc;
+}

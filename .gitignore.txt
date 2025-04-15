@@ -1,0 +1,19 @@
+# Entorno virtual
+venv_smartdemand/
+
+# Archivos compilados de Python
+__pycache__/
+*.py[cod]
+
+# Archivos temporales
+*.log
+*.sqlite3
+
+# Configuración de VSCode o PyCharm
+.vscode/
+.idea/
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+

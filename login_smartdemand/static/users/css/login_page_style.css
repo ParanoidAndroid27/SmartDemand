@@ -1,0 +1,143 @@
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #121212;
+  margin: 0;
+  padding: 0;
+  color: #f8f9fa;
+}
+
+/* Navbar */
+.navbar {
+  background-color: #fff;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logo-navbar {
+  height: 42px;
+  object-fit: contain;
+}
+
+.navbar .nav-link {
+  color: #333;
+  font-weight: 500;
+  margin-right: 15px;
+  transition: color 0.3s ease;
+}
+
+.navbar .nav-link:hover {
+  color: #0d6efd;
+}
+
+.navbar .form-control {
+  max-width: 300px;
+  border-radius: 6px;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  transition: border-color 0.2s;
+}
+
+.navbar .form-control:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+.dropdown-menu {
+  border-radius: 10px;
+  font-size: 0.95rem;
+  min-width: 220px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Login Section */
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 85vh;
+  padding: 2rem;
+}
+
+.login-box {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 35px 30px;
+  width: 360px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  color: #000;
+}
+
+.login-box h2 {
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-align: center;
+  color: #0d6efd;
+}
+
+.login-box label {
+  margin-top: 10px;
+  font-weight: 600;
+}
+
+.login-box input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.login-box button {
+  width: 100%;
+  padding: 12px;
+  background-color: #0d6efd;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.login-box button:hover {
+  background-color: #0b5ed7;
+}
+
+.options {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.options a {
+  font-size: 0.85rem;
+  text-decoration: none;
+  color: #0d6efd;
+}
+
+.options a:hover {
+  text-decoration: underline;
+}
+
+.brand-name {
+  font-weight: 700;
+  font-size: 32px;
+  color: #dfe3e7;
+  margin-top: 2rem;
+}
+
+/* Footer */
+.footer {
+  background-color: #f8f9fa;
+  color: #555;
+  border-top: 2px solid #ddd;
+  padding: 1.5rem 0;
+  text-align: center;
+}
+
+.footer img {
+  height: 50px;
+  margin-bottom: 10px;
+}

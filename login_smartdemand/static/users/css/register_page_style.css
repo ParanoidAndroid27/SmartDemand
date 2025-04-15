@@ -1,0 +1,57 @@
+body {
+    background-color: #0b132b;
+  }
+  
+  .registro-form {
+    background-color: #1e2a4a;
+    border-radius: 15px;
+    max-width: 650px;
+    width: 100%;
+    color: #fff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  }
+  
+  .form-control {
+    background-color: #324a6a;
+    color: #fff;
+    border: 1px solid #4d648d;
+    border-radius: 8px;
+  }
+  
+  .form-control:focus {
+    background-color: #3a506b;
+    color: #fff;
+    border-color: #5bc0be;
+    box-shadow: 0 0 0 0.15rem rgba(91, 192, 190, 0.25);
+  }
+  
+  .form-control::placeholder {
+    color: #cbd5e1;
+  }
+  
+  .form-label {
+    color: #d4d4d4;
+    font-weight: 500;
+  }
+  
+  .btn-success {
+    background-color: #3caea3;
+    border: none;
+  }
+  
+  .btn-success:hover {
+    background-color: #2b8d8a;
+  }
+  /* Footer */
+.footer {
+  background-color: #f8f9fa;
+  color: #f7f7f7;
+  border-top: 2px solid #ddd;
+  padding: 1.5rem 0;
+  text-align: center;
+}
+
+.footer img {
+  height: 50px;
+  margin-bottom: 10px;
+}
