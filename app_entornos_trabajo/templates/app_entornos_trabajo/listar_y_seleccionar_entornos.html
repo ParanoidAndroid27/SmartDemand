@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Seleccionar Entorno - SmartDemand{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'app_entornos_trabajo/seleccionar_entorno.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="glass-panel mx-auto mt-5" style="max-width: 900px;">
+  <div class="glass-header mb-4">
+    <h2><i class="bi bi-diagram-3-fill me-2"></i>Selecciona un entorno de trabajo</h2>
+  </div>
+  <div class="row g-4">
+    {% for entorno_item in entornos %}
+      <div class="col-12">
+        <div class="entorno-card-modern d-flex flex-column flex-md-row align-items-center p-4">
+          <div class="flex-grow-1 w-100">
+            <div class="d-flex align-items-center mb-2">
+              <i class="bi bi-house-gear-fill fs-2 text-primary me-2"></i>
+              <h5 class="mb-0 flex-grow-1 text-truncate" style="max-width: 70%;">{{ entorno_item.nombre|default:entorno_item.administrador.username }}</h5>
+              {% if entorno_item.id == entorno_activo_id %}
+                <span class="badge bg-success ms-2">Activo</span>
+              {% endif %}
+            </div>
+            <div class="mb-2">
+              <span class="badge bg-primary">
+                {% if entorno_item.administrador == request.user %}
+                  Administrador
+                {% else %}
+                  Colaborador
+                {% endif %}
+              </span>
+              <span class="badge bg-secondary">Colaboradores: {{ entorno_item.colaboradores.count }}</span>
+            </div>
+            <div class="mb-2 text-muted small">
+              <i class="bi bi-person-fill me-1"></i>Admin: {{ entorno_item.administrador.username }}
+            </div>
+          </div>
+          <div class="d-flex flex-column gap-2 ms-md-4 mt-3 mt-md-0" style="min-width: 180px;">
+            {% if entorno_item.id == entorno_activo_id %}
+              <button class="btn btn-success w-100" disabled>
+                <i class="bi bi-check-circle-fill me-1"></i>Actualmente Activo
+              </button>
+            {% else %}
+              <a href="{% url 'app_entornos_trabajo:activar_entorno_sesion' entorno_item.id %}" class="btn btn-gradient w-100">
+                <i class="bi bi-play-circle me-1"></i>Activar
+              </a>
+            {% endif %}
+            {% if entorno_item.administrador == request.user %}
+              <a href="{% url 'app_entornos_trabajo:gestionar_entorno' %}" class="btn btn-outline-primary w-100">
+                <i class="bi bi-gear-fill me-1"></i>Gestionar
+              </a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <div class="col-12">
+        <div class="alert alert-info text-center my-5 p-4 shadow-sm" style="max-width: 400px; margin:auto;">
+          <i class="bi bi-house-slash text-warning" style="font-size:2rem;"></i>
+          <div class="mt-2 fw-semibold" style="color:#2346a7;">
+            No tienes entornos disponibles.
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

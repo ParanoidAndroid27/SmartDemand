@@ -1,0 +1,179 @@
+:root {
+  --primary: #2346a7;
+  --primary-light: #396ae8;
+  --light: #f5f7fa;
+  --dark: #23272b;
+  --accent: #fbbf24;
+  --muted: #e5e7eb;
+}
+
+/* Fondo general */
+body {
+  font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+  background: url("/static/img/fondo_otro.png") no-repeat center center fixed;
+  background-size: cover;
+  background-attachment: fixed;
+  color: var(--dark);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* NAVBAR GLASS */
+.navbar-glass {
+  background: rgba(255,255,255,0.68);
+  box-shadow: 0 4px 32px 0 #2346a71a;
+  backdrop-filter: blur(10px);
+  border-radius: 0 0 1.2rem 1.2rem;
+  min-height: 56px;
+}
+.logo-navbar-sm {
+  height: 36px;
+  border-radius: 1.2rem;
+  box-shadow: 0 1px 12px #2346a713, 0 0 0 3px #fff3;
+  background: #fff;
+  padding: 2px 4px;
+  transition: box-shadow 0.18s;
+}
+.logo-navbar-sm:hover {
+  box-shadow: 0 3px 16px #2346a733, 0 0 0 5px #fbbf2435;
+}
+.dropdown-menu-user {
+  border-radius: 1.2rem;
+  border: none;
+  background: rgba(255,255,255,0.96);
+  box-shadow: 0 10px 32px 0 #2346a731;
+  min-width: 250px;
+  backdrop-filter: blur(12px);
+  padding: 1.2rem 1rem;
+}
+.dropdown-menu-user .dropdown-item {
+  border-radius: 8px;
+  margin-bottom: 4px;
+  font-weight: 500;
+  color: #2346a7;
+  transition: background 0.16s, color 0.13s;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.dropdown-menu-user .dropdown-item:hover,
+.dropdown-menu-user .dropdown-item:focus {
+  background: var(--primary-light);
+  color: #fff;
+}
+.user-avatar img {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2.5px solid var(--muted);
+  box-shadow: 0 1px 6px #2346a72a;
+  background: #e5e7eb;
+}
+.search-navbar {
+  border-radius: 2rem;
+  border: 1px solid var(--primary-light);
+  background: #f3f7fd;
+  transition: box-shadow 0.15s;
+  padding: 0.5rem 1.4rem;
+  font-size: 1rem;
+  box-shadow: 0 1px 5px #2346a71c;
+}
+.search-navbar:focus {
+  outline: none;
+  box-shadow: 0 2px 12px #2346a736;
+}
+.nav-link-modern {
+  color: var(--primary) !important;
+  font-weight: 500;
+  border-radius: 999px;
+  padding: 0.35em 1.1em !important;
+  margin-left: 0.5rem;
+  transition: background 0.13s, color 0.18s;
+}
+.nav-link-modern:hover, .nav-link-modern.active {
+  background: var(--primary-light);
+  color: #fff !important;
+}
+
+@media (max-width: 991px) {
+  .navbar-glass {
+    border-radius: 0 0 1.2rem 1.2rem;
+    padding-left: 0.3vw;
+    padding-right: 0.3vw;
+  }
+  .search-navbar {
+    margin-bottom: 10px;
+    width: 100%;
+  }
+}
+
+/* GLASS PANEL para el contenido principal */
+.glass-panel {
+  background: rgba(255,255,255,0.96);
+  border-radius: 2rem;
+  box-shadow: 0 8px 32px 0 #2346a726;
+  margin-top: 1.5rem;
+}
+
+/* Título */
+.section-title {
+  color: var(--primary);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 2rem;
+}
+
+/* Footer moderno */
+.footer-modern {
+  background: var(--primary);
+  color: #fff;
+  border-radius: 2rem 2rem 0 0;
+  box-shadow: 0 -4px 32px 0 #2346a729;
+  margin-top: auto;
+}
+.footer-modern a {
+  color: #fff;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+.footer-modern a:hover {
+  opacity: 1;
+  color: var(--accent);
+}
+.footer-modern img {
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 2px 12px 0 #0001;
+}
+
+@media (max-width: 768px) {
+  .glass-panel {
+    border-radius: 1rem;
+    margin-top: 1rem;
+    padding: 1.2rem !important;
+  }
+  .section-title {
+    font-size: 1.3rem;
+  }
+}
+
+.card {
+  border-radius: 1.2rem;
+}
+
+/* Estilos para las tarjetas de KPI dentro del dashboard */
+.kpi-card {
+  background-color: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.kpi-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(35, 70, 167, 0.15);
+}
+.kpi-icon {
+  font-size: 2.5rem;
+  color: var(--primary);
+}

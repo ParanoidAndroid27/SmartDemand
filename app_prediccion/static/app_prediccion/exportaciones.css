@@ -1,0 +1,75 @@
+.exportaciones-bg {
+  background: linear-gradient(135deg, #4b6cb7 0%, #182848 100%);
+  border-radius: 1rem 1rem 0 0;
+  height: 110px;
+  position: relative;
+  margin-bottom: -60px;
+  z-index: 1;
+}
+.exportaciones-card {
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 8px 32px rgba(44,62,80,0.13);
+  padding: 2.5rem 2rem 2rem 2rem;
+  position: relative;
+  z-index: 2;
+}
+.export-list .list-group-item {
+  border: none;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 8px rgba(44,62,80,0.07);
+  transition: box-shadow 0.2s, background 0.2s;
+  background: #f8fafc;
+}
+.export-list .list-group-item:hover {
+  box-shadow: 0 4px 16px rgba(44,62,80,0.13);
+  background: #eaf0fa;
+}
+.export-icon {
+  font-size: 1.7rem;
+  color: #2346a7;
+  vertical-align: middle;
+}
+.export-file-info {
+  max-width: 65%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.export-filename {
+  font-weight: 500;
+  color: #2346a7;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+  max-width: 100%;
+}
+.export-date {
+  font-size: 0.95em;
+  color: #6c757d;
+}
+.btn-gradient {
+  background: linear-gradient(90deg, #182848, #4b6cb7);
+  color: #fff;
+  border: none;
+  border-radius: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: transform 0.15s, opacity 0.15s;
+}
+.btn-gradient:hover {
+  transform: scale(1.04);
+  opacity: 0.93;
+  color: #fff;
+}
+.btn-download {
+  min-width: 130px;
+  max-width: 130px;
+  text-align: center;
+  padding-left: 0;
+  padding-right: 0;
+  white-space: nowrap;
+}

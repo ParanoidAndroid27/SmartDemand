@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{ producto.nombre }} - Detalle{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'app_gestion_productos/detalle_producto.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="detalle-producto-card mx-auto">
+  <div class="row g-4 align-items-center">
+    <div class="col-md-5 text-center">
+      {% if producto.imagen %}
+        <img src="{{ producto.imagen.url }}" class="detalle-producto-img" alt="{{ producto.nombre }}">
+      {% else %}
+        <div class="detalle-producto-img d-flex align-items-center justify-content-center">
+          <i class="bi bi-box-seam-fill text-muted" style="font-size: 4rem;"></i>
+        </div>
+      {% endif %}
+    </div>
+    <div class="col-md-7">
+      <div class="detalle-producto-title">{{ producto.nombre }}</div>
+      <div class="detalle-producto-desc">{{ producto.descripcion|default:"Sin descripción." }}</div>
+      <div class="mb-2">
+        <span class="badge bg-primary-subtle text-primary-emphasis detalle-producto-badge">{{ producto.categoria.nombre }}</span>
+        {% if producto.destacado %}
+          <span class="badge bg-warning text-dark detalle-producto-badge">Destacado</span>
+        {% endif %}
+      </div>
+      <div class="mb-2">
+        <span class="detalle-producto-label">Precio:</span>
+        <span class="fs-5 text-success">${{ producto.precio_unitario|floatformat:2 }}</span>
+      </div>
+      <div class="mb-2">
+        <span class="detalle-producto-label">Stock:</span>
+        <span class="badge {% if producto.stock <= 10 %}bg-danger-subtle text-danger-emphasis{% elif producto.stock <= 50 %}bg-warning-subtle text-warning-emphasis{% else %}bg-success-subtle text-success-emphasis{% endif %} detalle-producto-badge">
+          {{ producto.stock }} unidades
+        </span>
+      </div>
+      <div class="mb-2">
+        <span class="detalle-producto-label">Entorno:</span>
+        {% if producto.entorno %}
+          <span class="badge bg-info-subtle text-info-emphasis detalle-producto-badge">{{ producto.entorno.nombre }}</span>
+        {% else %}
+          <span class="badge bg-secondary-subtle text-secondary-emphasis detalle-producto-badge">Sin asignar</span>
+        {% endif %}
+      </div>
+      <div class="mt-4 d-flex gap-2 detalle-producto-actions flex-wrap">
+        <a href="{% url 'app_gestion_productos:editar_producto' producto.pk %}" class="btn btn-gradient">
+          <i class="bi bi-pencil-square me-1"></i> Editar
+        </a>
+        <a href="{% url 'app_gestion_productos:eliminar_producto' producto.pk %}" class="btn btn-outline-danger">
+          <i class="bi bi-trash me-1"></i> Eliminar
+        </a>
+        <a href="{% url 'app_gestion_productos:lista_productos' %}" class="btn btn-secondary ms-auto">
+          ← Volver
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

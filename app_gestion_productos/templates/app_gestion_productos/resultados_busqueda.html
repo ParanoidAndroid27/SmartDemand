@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Resultados de búsqueda{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'app_gestion_productos/resultados_busqueda.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="busqueda-panel mx-auto">
+  <h3 class="busqueda-titulo">
+    <i class="bi bi-search me-2"></i>Resultados para "<span class="fw-normal">{{ query }}</span>"
+  </h3>
+  {% if productos %}
+    <ul class="list-group busqueda-lista">
+      {% for producto in productos %}
+        <li class="list-group-item">
+          <i class="bi bi-box-seam"></i>
+          <a href="{% url 'app_gestion_productos:detalle_producto' producto.pk %}" class="busqueda-link">
+            {{ producto.nombre }}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <div class="alert alert-info">
+      <i class="bi bi-emoji-frown me-2"></i>
+      No se encontraron productos.
+    </div>
+  {% endif %}
+</div>
+{% endblock %}

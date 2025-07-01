@@ -1,0 +1,109 @@
+:root {
+  --primary: #2346a7;
+  --primary-light: #396ae8;
+  --light: #f5f7fa;
+  --dark: #23272b;
+  --accent: #fbbf24;
+  --muted: #e5e7eb;
+}
+
+/* Panel principal blanco, bordes redondeados y sombra */
+.glass-panel {
+  background: #fff;
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 32px 0 #2346a729, 0 1.5px 8px #2346a713;
+  padding: 2rem 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+/* Cards internas con efecto glass y sombra */
+.card.glass-card,
+.card {
+  background: rgba(255,255,255,0.97);
+  border-radius: 1.3rem;
+  box-shadow: 0 8px 32px rgba(60,60,120,0.10);
+  border: 1px solid rgba(200,200,255,0.13);
+  transition: box-shadow 0.2s, border 0.2s;
+}
+
+.card.glass-card:hover,
+.card:hover {
+  box-shadow: 0 12px 40px rgba(60,60,120,0.16);
+  border-color: #396ae8;
+}
+
+/* Card headers */
+.card-header.bg-light {
+  background: #f5f7fa !important;
+  border-radius: 1.3rem 1.3rem 0 0;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--primary);
+  border-bottom: none;
+}
+
+/* Section titles */
+.section-title {
+  color: var(--primary);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 2rem;
+}
+
+/* Tablas */
+.table {
+  border-radius: 1rem;
+  overflow: hidden;
+  background: transparent;
+}
+.table thead {
+  background: #f5f7fa;
+}
+.table th, .table td {
+  vertical-align: middle;
+}
+
+/* Botones */
+.btn-primary {
+  background: var(--primary-light);
+  border: none;
+  border-radius: 0.7rem;
+  font-weight: 600;
+}
+.btn-primary:hover, .btn-primary:focus {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* Sombra para alertas */
+.alert {
+  border-radius: 1rem;
+  box-shadow: 0 2px 12px #2346a71a;
+}
+
+/* Responsive: menos padding en móvil */
+@media (max-width: 768px) {
+  .glass-panel {
+    padding: 1rem 0.5rem;
+    border-radius: 0.8rem;
+  }
+  .card, .card.glass-card {
+    border-radius: 0.8rem;
+  }
+  .card-header.bg-light {
+    border-radius: 0.8rem 0.8rem 0 0;
+  }
+}
+
+/* Opcional: iconos grandes en KPIs */
+.fs-2 {
+  font-size: 2rem !important;
+}
+
+/* Clase para el contenedor principal con max-width */
+.container-principal {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}

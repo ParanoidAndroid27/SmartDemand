@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block title %}Agregar Producto - SmartDemand{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/home/Page_Style.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="glass-panel p-4 p-md-5 mb-5 mx-auto" style="max-width: 1050px;">
+  <div class="text-center mb-5">
+    <i class="bi bi-box-seam-fill display-4 text-primary"></i>
+    <h2 class="mb-1 fw-bold">Agregar Nuevo Producto</h2>
+    <p class="text-muted mb-0">Rellena los detalles para añadir un nuevo artículo a tu inventario.</p>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-lg-10">
+      <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row g-4">
+          <div class="col-lg-8">
+            <div class="card shadow-sm border-0 h-100">
+              <div class="card-header bg-white py-3">
+                <h5 class="mb-0 fw-semibold">Detalles Principales</h5>
+              </div>
+              <div class="card-body p-4">
+                <div class="row g-3">
+                  <div class="col-12">
+                    <label class="form-label">{{ form.nombre.label }}</label>
+                    {{ form.nombre|add_class:"form-control form-control-lg" }}
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label">Categoría</label>
+                    {{ form.categoria_nombre|add_class:"form-control"|attr:"placeholder:Ej: Electrónica, Ropa, etc." }}
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label">{{ form.descripcion.label }}</label>
+                    {{ form.descripcion|add_class:"form-control"|attr:"rows:4" }}
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">{{ form.stock.label }}</label>
+                    {{ form.stock|add_class:"form-control" }}
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">{{ form.precio_unitario.label }}</label>
+                    <div class="input-group">
+                      <span class="input-group-text">$</span>
+                      {{ form.precio_unitario|add_class:"form-control" }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="card shadow-sm border-0 mb-4">
+              <div class="card-header bg-white py-3">
+                <h5 class="mb-0 fw-semibold">Imagen del Producto</h5>
+              </div>
+              <div class="card-body p-4">
+                <div id="image-uploader" class="text-center" style="cursor:pointer;">
+                  <div id="image-placeholder">
+                    <i class="bi bi-image-alt display-4 text-muted"></i>
+                    <p class="text-muted mt-2">Haz clic para subir una imagen</p>
+                  </div>
+                  <img id="image-preview" src="#" alt="Vista previa" class="img-fluid rounded d-none" style="max-height: 250px;"/>
+                </div>
+                {{ form.imagen|add_class:"d-none"|attr:"onchange:previewImage(event)" }}
+              </div>
+            </div>
+            <div class="card shadow-sm border-0">
+              <div class="card-header bg-white py-3">
+                <h5 class="mb-0 fw-semibold">Opciones</h5>
+              </div>
+              <div class="card-body">
+                <div class="form-check form-switch w-100 d-flex align-items-center gap-2 mb-2">
+                  {{ form.destacado|add_class:"form-check-input" }}
+                  <label class="form-check-label flex-grow-1" for="{{ form.destacado.id_for_label }}">
+                    Marcar como producto destacado<br>
+                    <small class="text-muted">Aparecerá en la página principal.</small>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 mt-4">
+            <hr>
+            <div class="d-flex flex-column flex-sm-row-reverse gap-2">
+              <button type="submit" class="btn btn-primary btn-lg flex-grow-1">
+                <i class="bi bi-plus-circle-fill me-2"></i>Agregar Producto
+              </button>
+              <a href="{% url 'app_cargar_productos:cargar_csv' %}" class="btn btn-outline-secondary flex-grow-1">
+                Cargar desde CSV
+              </a>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  document.getElementById('image-uploader').addEventListener('click', function() {
+    document.getElementById('{{ form.imagen.id_for_label }}').click();
+  });
+  function previewImage(event) {
+    const imagePlaceholder = document.getElementById('image-placeholder');
+    const imagePreview = document.getElementById('image-preview');
+    if (event.target.files && event.target.files[0]) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        imagePreview.src = e.target.result;
+        imagePlaceholder.classList.add('d-none');
+        imagePreview.classList.remove('d-none');
+      };
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  }
+</script>
+{% endblock %}

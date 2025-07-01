@@ -1,136 +1,118 @@
+{% extends "base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SmartDemand</title>
 
-  <!-- Bootstrap -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="{% static 'css/home/Page_Style.css' %}">
+{% block title %}SmartDemand{% endblock %}
 
-</head>
-<body>
+{% block content %}
+  <!-- BANNER SOLO IMAGEN -->
+  <section class="hero-banner">
+    <img src="{% static 'img/Logofinal.png' %}" alt="Banner SmartDemand" class="w-100 hero-img">
+  </section>
 
-<!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg bg-light shadow-sm">
-  <div class="container px-4">
-    <div class="dropdown">
-      <a class="navbar-brand dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown">
-        <img src="{% static 'img/logo_fondo_blanco.png' %}" alt="SmartDemand Logo" height="40">
-      </a>
-      <ul class="dropdown-menu p-3" style="min-width: 250px;">
-        <li class="d-flex align-items-center mb-2">
-          <img src="{% static 'img/usuario.png' %}" alt="Usuario" width="40" height="40" class="rounded-circle me-2">
-          <span><strong>Juan Pérez</strong></span>
-        </li>
-        <li><hr class="dropdown-divider"></li>
-        <li><a class="dropdown-item" href="#">Mis productos</a></li>
-        <li><a class="dropdown-item" href="#">Configuración</a></li>
-        <li><hr class="dropdown-divider"></li>
-        <li><a class="dropdown-item text-danger" href="#">Cerrar sesión</a></li>
-      </ul>
-    </div>
-
-    <input class="form-control mx-3 w-50" type="search" placeholder="Buscar productos...">
-    
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item"><a class="nav-link" href="#">Productos</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Soluciones</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Comunidad</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Precios</a></li>
-        <li class="nav-item"><a class="nav-link" href="{% url 'login' %}" class="btn btn-primary">Iniciar sesión</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<!-- BANNER -->
-<section class="banner-container">
-  <div class="container-fluid p-0">
-    <img src="{% static 'img/banner.png' %}" class="img-fluid w-100 banner-img" alt="Banner de empresa">
-  </div>
-</section>
-
-<!-- CARRUSEL -->
-<section class="carrusel-section py-4">
-  <div class="container carrusel-contenedor px-3">
-    <h2 class="text-center mb-4">Nuestras Soluciones</h2>
-    <div id="carouselProductos" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-inner text-center">
-        <div class="carousel-item active">
-          <img src="{% static 'img/producto_ejemplo.png' %}" class="carousel-img d-block mx-auto" alt="Producto 1">
-          <p class="mt-2">Predicción con IA</p>
-        </div>
-        <div class="carousel-item">
-          <img src="{% static 'img/producto_ejemplo.png' %}" class="carousel-img d-block mx-auto" alt="Producto 2">
-          <p class="mt-2">Dashboard Inteligente</p>
-        </div>
-        <div class="carousel-item">
-          <img src="{% static 'img/producto_ejemplo.png' %}" class="carousel-img d-block mx-auto" alt="Producto 3">
-          <p class="mt-2">Análisis de Ventas</p>
-        </div>
+  <!-- CARRUSEL DE SOLUCIONES MEJORADO -->
+  <section class="py-5 bg-white position-relative">
+    <div class="container">
+      <!-- TÍTULO -->
+      <div class="text-center mb-5">
+        <h2 class="section-title">
+          <i class="bi bi-stars text-primary me-2"></i> NUESTRAS SOLUCIONES
+        </h2>
+        <p class="lead text-muted">Transforma tu negocio con herramientas inteligentes y visuales.</p>
       </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselProductos" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon"></span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselProductos" data-bs-slide="next">
-        <span class="carousel-control-next-icon"></span>
-      </button>
-    </div>
-  </div>
-</section>
 
-<!-- PRODUCTOS DESTACADOS -->
-<section class="productos-destacados py-5">
-  <div class="container">
-    <h2 class="text-center mb-4">Productos Destacados</h2>
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-      <div class="col">
-        <div class="card h-100 text-center">
-          <img src="{% static 'img/producto_ejemplo.png' %}" class="card-img-top" alt="Producto IA">
-          <div class="card-body">
-            <h5 class="card-title">Predicción de Demanda</h5>
-            <p class="card-text">$50.000</p>
+      <!-- CARRUSEL -->
+      <div id="carouselSoluciones" class="carousel slide">
+        <div class="carousel-inner shadow-sm rounded-4 bg-light p-5">
+          <!-- Slide 1 -->
+          <div class="carousel-item active">
+            <div class="text-center">
+              <i class="bi bi-graph-up-arrow display-3 text-primary mb-3"></i>
+              <h3 class="fw-bold">Predicción Inteligente</h3>
+              <p class="text-muted lead">Anticipa tu demanda con modelos de IA y toma decisiones más certeras.</p>
+            </div>
+          </div>
+          <!-- Slide 2 -->
+          <div class="carousel-item">
+            <div class="text-center">
+              <i class="bi bi-speedometer2 display-3 text-success mb-3"></i>
+              <h3 class="fw-bold">Dashboard Interactivo</h3>
+              <p class="text-muted lead">Visualiza tu negocio en tiempo real con tableros dinámicos y amigables.</p>
+            </div>
+          </div>
+          <!-- Slide 3 -->
+          <div class="carousel-item">
+            <div class="text-center">
+              <i class="bi bi-bar-chart-line display-3 text-warning mb-3"></i>
+              <h3 class="fw-bold">Análisis de Ventas</h3>
+              <p class="text-muted lead">Descubre patrones de consumo y oportunidades de mejora con gráficos claros.</p>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col">
-        <div class="card h-100 text-center">
-          <img src="{% static 'img/producto_ejemplo.png' %}" class="card-img-top" alt="Dashboard">
-          <div class="card-body">
-            <h5 class="card-title">Dashboard Inteligente</h5>
-            <p class="card-text">$35.000</p>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card h-100 text-center">
-          <img src="{% static 'img/producto_ejemplo.png' %}" class="card-img-top" alt="Análisis">
-          <div class="card-body">
-            <h5 class="card-title">Análisis de Ventas</h5>
-            <p class="card-text">$25.000</p>
-          </div>
+        <!-- Controles -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselSoluciones" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+          <span class="visually-hidden">Anterior</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselSoluciones" data-bs-slide="next">
+          <span class="carousel-control-next-icon"></span>
+          <span class="visually-hidden">Siguiente</span>
+        </button>
+        <!-- Indicadores -->
+        <div class="carousel-indicators position-relative mt-4" style="bottom: 0;">
+          <button type="button" data-bs-target="#carouselSoluciones" data-bs-slide-to="0" class="active" aria-current="true"></button>
+          <button type="button" data-bs-target="#carouselSoluciones" data-bs-slide-to="1"></button>
+          <button type="button" data-bs-target="#carouselSoluciones" data-bs-slide-to="2"></button>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- FOOTER -->
-<footer class="footer text-center py-4">
-  <div class="container">
-    <img src="{% static 'img/logo_fondo_blanco.png' %}" width="100" alt="Logo Footer">
-    <p class="mt-3">© 2025 SmartDemand - Todos los derechos reservados</p>
-  </div>
-</footer>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+  <!-- PRODUCTOS DESTACADOS MEJORADO -->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="section-title">🌟 Productos Destacados</h2>
+        <p class="lead text-muted">Explora nuestros artículos más populares y recomendados por nuestros clientes.</p>
+      </div>
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        {% if productos_destacados %}
+          {% for prod in productos_destacados %}
+          <div class="col">
+            <div class="card product-card h-100 shadow glass-card border-0">
+              <!-- Imagen y etiqueta -->
+              <div class="position-relative">
+                <img src="{{ prod.imagen.url }}" class="card-img-top" alt="{{ prod.nombre }}">
+                <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-3 fw-semibold rounded-pill px-3 py-1 shadow-sm">
+                  🌟 Destacado
+                </span>
+              </div>
+              <!-- Información -->
+              <div class="card-body d-flex flex-column p-4">
+                <h5 class="card-title fw-bold text-primary">{{ prod.nombre }}</h5>
+                <p class="card-text text-muted mb-3">{{ prod.categoria.nombre|default:"Sin categoría" }}</p>
+                <!-- Precio y acción -->
+                <div class="mt-auto d-flex justify-content-between align-items-center">
+                  <span class="fs-5 fw-bolder text-dark">${{ prod.precio_unitario }}</span>
+                  <a href="{% url 'app_gestion_productos:lista_productos' %}" class="btn btn-gradient-lista-ventas btn-sm">
+                    Ver más
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        {% else %}
+          <div class="alert alert-info text-center mx-auto my-5 p-4 shadow-sm" style="max-width: 400px;">
+            <i class="bi bi-star text-warning" style="font-size:2rem;"></i>
+            <div class="mt-2 fw-semibold" style="color:#2346a7;">
+              No tienes productos destacados aún.
+            </div>
+            <div class="small text-muted">
+              Marca productos como destacados para verlos aquí.
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+{% endblock %}

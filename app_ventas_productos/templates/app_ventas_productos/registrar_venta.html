@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block title %}Registrar Venta - SmartDemand{% endblock %}
+
+{% block content %}
+<main class="container flex-grow-1 py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-7">
+      <div class="glass-panel p-4 shadow-lg border-0">
+        <div class="text-center mb-4">
+          <i class="bi bi-cart-plus-fill fs-1 text-success mb-2"></i>
+          <h2 class="section-title mb-0">Registrar Nueva Venta</h2>
+          <div class="text-muted small">Completa los datos para agregar una venta</div>
+        </div>
+
+        {% if messages %}
+          {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+              {{ message }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+            </div>
+          {% endfor %}
+        {% endif %}
+
+        <form method="POST" class="row g-3">
+          {% csrf_token %}
+          <div class="col-12">
+            <label class="form-label fw-semibold">{{ form.producto.label }}</label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="bi bi-box2"></i></span>
+              {{ form.producto|add_class:"form-select" }}
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <label class="form-label fw-semibold">{{ form.fecha_venta.label }}</label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="bi bi-calendar-event"></i></span>
+              {{ form.fecha_venta|add_class:"form-control" }}
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <label class="form-label fw-semibold">{{ form.cantidad_vendida.label }}</label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="bi bi-hash"></i></span>
+              {{ form.cantidad_vendida|add_class:"form-control" }}
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <label class="form-label fw-semibold">{{ form.precio_unitario.label }}</label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="bi bi-currency-dollar"></i></span>
+              {{ form.precio_unitario|add_class:"form-control" }}
+            </div>
+          </div>
+          <div class="col-12 d-flex justify-content-center mt-3">
+            <button type="submit" class="btn btn-success btn-lg px-5 shadow-sm">
+              <i class="bi bi-check2-circle me-2"></i>Registrar Venta
+            </button>
+          </div>
+        </form>
+
+        <!-- Botones adicionales para navegación -->
+        <div class="d-flex flex-column flex-md-row justify-content-center gap-2 mt-4">
+          <a href="{% url 'app_ventas_productos:listar_ventas' %}"
+             class="btn btn-outline-primary btn-lg d-flex align-items-center justify-content-center fw-semibold px-4 py-2 gap-2"
+             style="font-size:1.1rem;">
+            <i class="bi bi-list-ul fs-4"></i>Ver lista de ventas
+          </a>
+          <a href="{% url 'app_ventas_productos:cargar_ventas_csv' %}"
+             class="btn btn-outline-primary btn-lg d-flex align-items-center justify-content-center fw-semibold px-4 py-2 gap-2"
+             style="font-size:1.1rem;">
+            <i class="bi bi-upload fs-4"></i>Cargar ventas por archivo CSV
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}

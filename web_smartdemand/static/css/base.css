@@ -1,0 +1,49 @@
+/* NAVBAR GLASS */
+.navbar-glass {
+  background: rgba(255,255,255,0.65);
+  border-radius: 1.2rem;
+  box-shadow: 0 4px 32px 0 #2346a71a;
+  backdrop-filter: blur(10px);
+  margin-top: 12px;
+  margin-left: 1.5vw;
+  margin-right: 1.5vw;
+  padding-left: 0.5vw;
+  padding-right: 0.5vw;
+  min-height: 56px;
+}
+
+.logo-navbar-sm {
+  height: 36px;
+  border-radius: 1.2rem;
+  box-shadow: 0 1px 12px #2346a713, 0 0 0 3px #fff3;
+  background: #fff;
+  padding: 2px 4px;
+  transition: box-shadow 0.18s;
+}
+.logo-navbar-sm:hover {
+  box-shadow: 0 3px 16px #2346a733, 0 0 0 5px #fbbf2435;
+}
+
+/* FOOTER MODERN */
+.footer-modern {
+  background: #2346a7;
+  color: #fff;
+  border-radius: 2rem 2rem 0 0;
+  box-shadow: 0 -4px 32px 0 #2346a729;
+}
+.footer-modern a {
+  color: #fff;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+.footer-modern a:hover {
+  opacity: 1;
+  color: #fbbf24;
+}
+.footer-modern img {
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 2px 12px 0 #0001;
+}
+
+/* Otros estilos globales para base.html aquí... */

@@ -1,0 +1,156 @@
+:root {
+  --primary: #2346a7;
+  --primary-light: #396ae8;
+  --light: #f5f7fa;
+  --dark: #23272b;
+  --accent: #fbbf24;
+  --muted: #e5e7eb;
+}
+
+/* Fondo general */
+body {
+  font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+  background: url("../../img/fondo_otro.png") no-repeat center center fixed;
+  background-size: cover;
+  background-attachment: fixed;
+  color: var(--dark);
+  min-height: 100vh;
+}
+
+/* ===== NAVBAR GLASS & MODERNO ===== */
+.navbar-glass {
+  background: rgba(255,255,255,0.65);
+  border-radius: 1.2rem;
+  box-shadow: 0 4px 32px 0 #2346a71a;
+  backdrop-filter: blur(10px);
+  margin-top: 12px;
+  margin-left: 1.5vw;
+  margin-right: 1.5vw;
+  padding-left: 0.5vw;
+  padding-right: 0.5vw;
+  min-height: 56px;
+}
+
+.logo-navbar-sm {
+  height: 36px;
+  border-radius: 1.2rem;
+  box-shadow: 0 1px 12px #2346a713, 0 0 0 3px #fff3;
+  background: #fff;
+  padding: 2px 4px;
+  transition: box-shadow 0.18s;
+}
+.logo-navbar-sm:hover {
+  box-shadow: 0 3px 16px #2346a733, 0 0 0 5px #fbbf2435;
+}
+
+.dropdown-menu-user {
+  border-radius: 1.2rem;
+  border: none;
+  background: rgba(255,255,255,0.96);
+  box-shadow: 0 10px 32px 0 #2346a731;
+  min-width: 250px;
+  backdrop-filter: blur(12px);
+  padding: 1.2rem 1rem;
+}
+.dropdown-menu-user .dropdown-item {
+  border-radius: 8px;
+  margin-bottom: 4px;
+  font-weight: 500;
+  color: #2346a7;
+  transition: background 0.16s, color 0.13s;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.dropdown-menu-user .dropdown-item:hover,
+.dropdown-menu-user .dropdown-item:focus {
+  background: var(--primary-light);
+  color: #fff;
+}
+.dropdown-menu-user .dropdown-divider {
+  margin: 0.4rem 0;
+}
+.user-avatar img {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2.5px solid var(--muted);
+  box-shadow: 0 1px 6px #2346a72a;
+  background: #e5e7eb;
+}
+
+.search-navbar {
+  border-radius: 2rem;
+  border: 1px solid var(--primary-light);
+  background: #f3f7fd;
+  transition: box-shadow 0.15s;
+  padding: 0.5rem 1.4rem;
+  font-size: 1rem;
+  box-shadow: 0 1px 5px #2346a71c;
+}
+.search-navbar:focus {
+  outline: none;
+  box-shadow: 0 2px 12px #2346a736;
+}
+
+.nav-link-modern {
+  color: var(--primary) !important;
+  font-weight: 500;
+  border-radius: 999px;
+  padding: 0.35em 1.1em !important;
+  margin-left: 0.5rem;
+  transition: background 0.13s, color 0.18s;
+}
+.nav-link-modern:hover, .nav-link-modern.active {
+  background: var(--primary-light);
+  color: #fff !important;
+}
+
+@media (max-width: 991px) {
+  .navbar-glass {
+    border-radius: 0;
+    margin: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .search-navbar {
+    margin-bottom: 10px;
+    width: 100%;
+  }
+}
+
+/* Mejora visual para tabla de productos */
+.tabla-productos {
+  border-radius: 1.1rem;
+  overflow: hidden;
+  margin-top: 2rem;
+  box-shadow: 0 4px 18px 0 #2346a71c;
+}
+.tabla-productos thead th {
+  background: var(--primary-light);
+  color: #fff;
+  border: none;
+  font-weight: 700;
+}
+.tabla-productos tbody td, .tabla-productos tbody th {
+  vertical-align: middle;
+}
+.tabla-productos tr:hover {
+  background: #f5f7fa;
+}
+
+/* Panel de fondo glass */
+.glass-panel {
+  background: rgba(255,255,255,0.90);
+  border-radius: 2rem;
+  box-shadow: 0 8px 32px 0 #2346a726;
+}
+
+/* ===== SECTION TITLES ===== */
+.section-title {
+  color: var(--primary);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 2rem;
+}

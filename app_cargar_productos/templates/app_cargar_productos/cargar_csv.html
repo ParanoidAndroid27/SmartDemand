@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}Cargar Productos por CSV - SmartDemand{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'app_agregar_productos/css/cargar_csv.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="glass-panel p-4 shadow-lg border-0 mb-5 mx-auto" style="max-width: 700px;">
+  <div class="text-center mb-3">
+    <i class="bi bi-upload display-3 text-success"></i>
+  </div>
+  <h2 class="section-title text-center mb-2">Cargar Productos desde Archivo CSV</h2>
+  <p class="text-muted text-center mb-4">Sube tu archivo CSV para agregar productos de forma masiva.</p>
+
+  {% if messages %}
+    <div>
+      {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+          {{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="mb-3 text-center">
+      <label for="id_archivo_csv" class="form-label fw-semibold mb-2">Selecciona tu archivo CSV</label>
+      {{ form.archivo_csv }}
+    </div>
+    <div class="d-flex justify-content-center">
+      <button type="submit" class="btn btn-success btn-lg px-5">Cargar</button>
+    </div>
+  </form>
+
+  <div class="mt-4">
+    <p><strong>Formato esperado (CSV):</strong></p>
+    <pre class="bg-light rounded-3 p-2">nombre,descripcion,categoria,stock,precio_unitario</pre>
+  </div>
+</div>
+
+<!-- Loader Spinner -->
+<div id="loader" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(255,255,255,0.7); z-index:9999; align-items:center; justify-content:center;">
+  <div class="spinner-border text-primary" style="width:4rem; height:4rem;" role="status">
+    <span class="visually-hidden">Cargando...</span>
+  </div>
+  <div class="mt-3 text-primary fw-bold fs-5">Procesando, por favor espera...</div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  // Loader solo para el formulario de carga CSV
+  document.querySelectorAll('form').forEach(form => {
+    form.addEventListener('submit', function() {
+      document.getElementById('loader').style.display = 'flex';
+    });
+  });
+</script>
+{% endblock %}

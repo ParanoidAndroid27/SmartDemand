@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Catálogo de {{ entorno.nombre }} - SmartDemand{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/home/Page_Style.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="glass-panel p-4 p-md-5 mb-5 mx-auto" style="max-width: 1100px;">
+  <div class="d-flex align-items-center mb-3">
+    <i class="bi bi-book-half fs-1 me-3 text-success"></i>
+    <div>
+      <h2 class="mb-0">Catálogo del Entorno: {{ entorno.nombre }}</h2>
+    </div>
+  </div>
+  <a href="{% url 'app_catalogo_entorno:crear_producto_entorno' entorno.id %}"
+     class="btn btn-primary mb-3 shadow-sm">
+     <i class="bi bi-plus-circle-fill me-2"></i>Añadir Nuevo Producto al Catálogo
+  </a>
+  <hr class="mb-4">
+
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-{{ message.tags }} alert-dismissible fade show shadow-sm rounded-3 mb-3" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endfor %}
+  {% endif %}
+
+  {% if productos %}
+  <div class="glass-card card shadow-sm border-0 mb-4">
+    <div class="card-header bg-transparent pt-3 border-0">
+      <h5 class="mb-0 card-title"><i class="bi bi-list-ul me-2 text-success"></i>Productos en el Catálogo</h5>
+    </div>
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table table-hover table-striped align-middle mb-0">
+          <thead class="table-light">
+            <tr>
+              <th scope="col" class="ps-3">Nombre del Producto</th>
+              <th scope="col" class="text-end">Precio</th>
+              <th scope="col" class="text-center">Stock Disponible</th>
+              <th scope="col" class="text-center pe-3">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for p in productos %}
+            <tr>
+              <td class="ps-3">{{ p.nombre }}</td>
+              <td class="text-end">${{ p.precio_unitario|floatformat:2 }}</td>
+              <td class="text-center">{{ p.stock }}</td>
+              <td class="text-center pe-3">
+                <a href="{% url 'app_catalogo_entorno:editar_producto_entorno' p.pk %}"
+                   class="btn btn-sm btn-outline-warning me-1" title="Editar Producto">
+                  <i class="bi bi-pencil-fill"></i> Editar
+                </a>
+                <a href="{% url 'app_catalogo_entorno:eliminar_producto_entorno' p.pk %}"
+                   class="btn btn-sm btn-outline-danger" title="Eliminar Producto">
+                  <i class="bi bi-trash-fill"></i> Eliminar
+                </a>
+              </td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  {% else %}
+    <div class="alert alert-info shadow-sm text-center" role="alert">
+      <i class="bi bi-info-circle me-2"></i>No hay productos actualmente en este catálogo. ¡Comienza añadiendo algunos!
+    </div>
+  {% endif %}
+
+  <div class="mt-4 text-center">
+    <a href="{% url 'app_entornos_trabajo:gestionar_entorno' %}" class="btn btn-secondary">
+      <i class="bi bi-arrow-left-circle me-2"></i>Volver a la Gestión del Entorno
+    </a>
+  </div>
+</div>
+{% endblock %}

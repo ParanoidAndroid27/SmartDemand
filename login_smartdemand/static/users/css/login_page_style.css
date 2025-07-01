@@ -1,143 +1,86 @@
-body {
-  font-family: 'Inter', sans-serif;
-  background-color: #121212;
+html, body {
+  height: 100%;
   margin: 0;
   padding: 0;
-  color: #f8f9fa;
+  background: linear-gradient(to bottom right, #2346a7, #3caea3);
+  font-family: 'Segoe UI', sans-serif;
 }
 
-/* Navbar */
-.navbar {
-  background-color: #fff;
-  padding: 1rem 2rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+.background-login {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url('../../img/fondo_otro.png') no-repeat center center fixed;
+  background-size: cover;
 }
 
-.logo-navbar {
-  height: 42px;
-  object-fit: contain;
+
+.glass-login {
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 1rem;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  padding: 2rem;
+  width: 360px;
+  text-align: center;
 }
 
-.navbar .nav-link {
+.brand-logo {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+h2 {
   color: #333;
-  font-weight: 500;
-  margin-right: 15px;
+  margin-bottom: 0.5rem;
+}
+
+p {
+  color: #888;
+  margin-bottom: 1rem;
+}
+
+.form-label {
+  text-align: left;
+  font-weight: 600;
+  color: #2346a7;
+}
+
+.input-group-text {
+  background: none;
+  border-right: 0;
+  color: #2346a7;
+}
+
+.form-control {
+  border-left: 0;
+  box-shadow: none;
+}
+
+.btn-primary {
+  background-image: linear-gradient(to right, #2346a7, #22c55e);
+  border: none;
+  color: #fff;
+  font-weight: 600;
+  padding: 10px;
+  border-radius: 8px;
+  transition: 0.3s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
+}
+
+.small a {
+  color: #2346a7;
+  text-decoration: none;
   transition: color 0.3s ease;
 }
 
-.navbar .nav-link:hover {
-  color: #0d6efd;
-}
-
-.navbar .form-control {
-  max-width: 300px;
-  border-radius: 6px;
-  padding: 8px 12px;
-  border: 1px solid #ccc;
-  transition: border-color 0.2s;
-}
-
-.navbar .form-control:focus {
-  border-color: #0d6efd;
-  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
-}
-
-.dropdown-menu {
-  border-radius: 10px;
-  font-size: 0.95rem;
-  min-width: 220px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-/* Login Section */
-.main-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 85vh;
-  padding: 2rem;
-}
-
-.login-box {
-  background-color: #ffffff;
-  border-radius: 12px;
-  padding: 35px 30px;
-  width: 360px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-  color: #000;
-}
-
-.login-box h2 {
-  font-weight: 600;
-  margin-bottom: 1rem;
-  text-align: center;
-  color: #0d6efd;
-}
-
-.login-box label {
-  margin-top: 10px;
-  font-weight: 600;
-}
-
-.login-box input {
-  width: 100%;
-  padding: 10px;
-  margin-top: 6px;
-  margin-bottom: 16px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-}
-
-.login-box button {
-  width: 100%;
-  padding: 12px;
-  background-color: #0d6efd;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-weight: bold;
-  font-size: 1rem;
-  transition: background-color 0.3s ease;
-}
-
-.login-box button:hover {
-  background-color: #0b5ed7;
-}
-
-.options {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
-}
-
-.options a {
-  font-size: 0.85rem;
-  text-decoration: none;
-  color: #0d6efd;
-}
-
-.options a:hover {
-  text-decoration: underline;
-}
-
-.brand-name {
-  font-weight: 700;
-  font-size: 32px;
-  color: #dfe3e7;
-  margin-top: 2rem;
-}
-
-/* Footer */
-.footer {
-  background-color: #f8f9fa;
-  color: #555;
-  border-top: 2px solid #ddd;
-  padding: 1.5rem 0;
-  text-align: center;
-}
-
-.footer img {
-  height: 50px;
-  margin-bottom: 10px;
+.small a:hover {
+  color: #22c55e;
 }

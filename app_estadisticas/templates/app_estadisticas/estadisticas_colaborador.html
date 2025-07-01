@@ -1,0 +1,171 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Estadísticas de {{ colaborador.username }} - SmartDemand{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'app_estadisticas/app_estadisticas.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="glass-panel p-4 p-md-5 mb-5 mx-auto" style="max-width: 1200px;">
+  <div class="row mb-4">
+    <div class="col-12 d-flex align-items-center">
+      <i class="bi bi-person-circle fs-1 me-3 text-primary"></i>
+      <div>
+        <h2 class="mb-0">Dashboard de {{ colaborador.username }}</h2>
+        <p class="text-muted mb-0">Entorno: {{ entorno.nombre|default:"(Sin nombre)" }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- KPIs -->
+  <div class="row g-4 mb-4">
+    <div class="col-6 col-md-3">
+      <div class="card glass-card text-center shadow-sm">
+        <div class="card-body">
+          <div class="fs-2 text-primary mb-2"><i class="bi bi-box2-fill"></i></div>
+          <div class="fw-bold fs-3">{{ productos_creados }}</div>
+          <div class="text-muted small">Productos creados</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="card glass-card text-center shadow-sm">
+        <div class="card-body">
+          <div class="fs-2 text-success mb-2"><i class="bi bi-cart-check-fill"></i></div>
+          <div class="fw-bold fs-3">{{ num_ventas }}</div>
+          <div class="text-muted small">Ventas realizadas</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="card glass-card text-center shadow-sm">
+        <div class="card-body">
+          <div class="fs-2 text-info mb-2"><i class="bi bi-currency-dollar"></i></div>
+          <div class="fw-bold fs-3">${{ total_ingresos|floatformat:0 }}</div>
+          <div class="text-muted small">Total recaudado</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="card glass-card text-center shadow-sm">
+        <div class="card-body">
+          <div class="fs-2 text-warning mb-2"><i class="bi bi-graph-up-arrow"></i></div>
+          <div class="fw-bold fs-3">{{ total_cantidad_vendida }}</div>
+          <div class="text-muted small">Unidades vendidas</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Gráficas -->
+  <div class="row g-4 mb-4">
+    <div class="col-12 col-lg-6">
+      <div class="card glass-card shadow-sm">
+        <div class="card-header bg-light">
+          <i class="bi bi-bar-chart-line-fill text-primary me-2"></i>Ventas por mes
+        </div>
+        <div class="card-body">
+          <canvas id="ventasPorMesChart" height="180"></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-lg-6">
+      <div class="card glass-card shadow-sm">
+        <div class="card-header bg-light">
+          <i class="bi bi-pie-chart-fill text-success me-2"></i>Productos más vendidos
+        </div>
+        <div class="card-body">
+          <canvas id="productosMasVendidosChart" height="180"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Últimas ventas -->
+  <div class="row mt-4">
+    <div class="col-12">
+      <div class="card glass-card shadow-sm">
+        <div class="card-header bg-light">
+          <i class="bi bi-clock-history text-secondary me-2"></i>Últimas ventas
+        </div>
+        <div class="card-body p-0">
+          {% if ventas %}
+            <div class="table-responsive">
+              <table class="table table-hover table-striped align-middle mb-0">
+                <thead class="table-light">
+                  <tr>
+                    <th>Producto</th>
+                    <th>Fecha</th>
+                    <th class="text-center">Cantidad</th>
+                    <th class="text-end">Precio Unit.</th>
+                    <th class="text-end">Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for v in ventas|slice:":10" %}
+                  <tr>
+                    <td>{{ v.producto.nombre }}</td>
+                    <td>{{ v.fecha_venta|date:"d/m/Y" }}</td>
+                    <td class="text-center">{{ v.cantidad_vendida }}</td>
+                    <td class="text-end">${{ v.precio_unitario|floatformat:0 }}</td>
+                    <td class="text-end fw-bold">${{ v.total|floatformat:0 }}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          {% else %}
+            <div class="p-4 text-center">
+              <i class="bi bi-cart-x fs-1 text-muted mb-2"></i>
+              <p class="text-muted mb-0">Este colaborador aún no ha registrado ventas.</p>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const ventasPorMesCtx = document.getElementById('ventasPorMesChart').getContext('2d');
+new Chart(ventasPorMesCtx, {
+  type: 'bar',
+  data: {
+    labels: {{ labels_ventas_mes|safe }},
+    datasets: [{
+      label: 'Unidades vendidas',
+      data: {{ data_ventas_mes|safe }},
+      backgroundColor: '#396ae8'
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { display: false } }
+  }
+});
+
+const productosMasVendidosCtx = document.getElementById('productosMasVendidosChart').getContext('2d');
+new Chart(productosMasVendidosCtx, {
+  type: 'doughnut',
+  data: {
+    labels: {{ labels_productos|safe }},
+    datasets: [{
+      label: 'Cantidad',
+      data: {{ data_productos|safe }},
+      backgroundColor: [
+        '#396ae8', '#22c55e', '#fbbf24', '#ef4444', '#a855f7'
+      ]
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { position: 'bottom' } }
+  }
+});
+</script>
+{% endblock %}

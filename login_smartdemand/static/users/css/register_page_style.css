@@ -1,57 +1,94 @@
-body {
-    background-color: #0b132b;
-  }
-  
-  .registro-form {
-    background-color: #1e2a4a;
-    border-radius: 15px;
-    max-width: 650px;
-    width: 100%;
-    color: #fff;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-  }
-  
-  .form-control {
-    background-color: #324a6a;
-    color: #fff;
-    border: 1px solid #4d648d;
-    border-radius: 8px;
-  }
-  
-  .form-control:focus {
-    background-color: #3a506b;
-    color: #fff;
-    border-color: #5bc0be;
-    box-shadow: 0 0 0 0.15rem rgba(91, 192, 190, 0.25);
-  }
-  
-  .form-control::placeholder {
-    color: #cbd5e1;
-  }
-  
-  .form-label {
-    color: #d4d4d4;
-    font-weight: 500;
-  }
-  
-  .btn-success {
-    background-color: #3caea3;
-    border: none;
-  }
-  
-  .btn-success:hover {
-    background-color: #2b8d8a;
-  }
-  /* Footer */
-.footer {
-  background-color: #f8f9fa;
-  color: #f7f7f7;
-  border-top: 2px solid #ddd;
-  padding: 1.5rem 0;
-  text-align: center;
+html, body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  background: linear-gradient(120deg, #2346a7 0%, #3caea3 100%);
 }
 
-.footer img {
-  height: 50px;
-  margin-bottom: 10px;
+.background-register {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 0;
+}
+
+.glass-register {
+  background: rgba(255,255,255,0.93);
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 32px rgba(60,60,120,0.13);
+  padding: 2.5rem 2rem;
+  max-width: 500px;
+  margin: auto;
+  animation: fadeIn 0.7s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+
+.brand-logo {
+  height: 48px;
+  margin-bottom: 1rem;
+  filter: drop-shadow(0 2px 8px #2346a7aa);
+}
+
+h2 {
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+p {
+  color: #888;
+}
+
+.form-label {
+  color: #2346a7;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  margin-bottom: 0.3rem;
+}
+
+.form-control {
+  border-radius: 0.8rem;
+  font-size: 1.08rem;
+  background: #f7fafd;
+  border: 1.5px solid #e3e8f0;
+  transition: border-color 0.18s;
+}
+
+.form-control:focus {
+  border-color: #396ae8;
+  box-shadow: 0 0 0 2px #396ae820;
+  background: #fff;
+}
+
+.btn-primary {
+  background: linear-gradient(90deg, #396ae8 0%, #22c55e 100%);
+  border: none;
+  border-radius: 0.8rem;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: filter 0.18s, box-shadow 0.18s;
+  box-shadow: 0 2px 12px rgba(57,106,232,0.10);
+}
+
+.btn-primary:hover {
+  filter: brightness(1.08);
+  box-shadow: 0 4px 18px rgba(34,197,94,0.13);
+}
+
+footer {
+  background: transparent;
+  border: none;
+}
+
+@media (max-width: 600px) {
+  .glass-register {
+    padding: 1.2rem 0.3rem;
+    border-radius: 1rem;
+    max-width: 98vw;
+  }
 }

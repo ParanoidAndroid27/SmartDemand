@@ -1,0 +1,175 @@
+{% extends "base.html" %}
+{% load static widget_tweaks %}
+
+{% block title %}Gestionar Entorno de Trabajo - SmartDemand{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/home/Page_Style.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="glass-panel p-4 p-md-5 mb-5 mx-auto" style="max-width: 1200px;">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <div class="d-flex align-items-center">
+      <i class="bi bi-briefcase-fill fs-1 me-3 text-primary"></i>
+      <div>
+        <h2 class="mb-0">Gestionar mi Entorno de Trabajo</h2>
+      </div>
+    </div>
+    <div>
+      <a href="{% url 'app_entornos_trabajo:listar_y_seleccionar_entornos' %}" class="btn btn-outline-primary">
+        <i class="bi bi-list-check me-1"></i> Seleccionar otro entorno
+      </a>
+    </div>
+  </div>
+  <hr class="mb-4">
+
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-{{ message.tags }} alert-dismissible fade show shadow-sm rounded-3 mb-3" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endfor %}
+  {% endif %}
+
+  {% if entorno_trabajo %}
+    <div class="row g-4">
+      <!-- Columna Principal: Gestión de Colaboradores -->
+      <div class="col-lg-8">
+        <div class="card shadow-sm h-100">
+          <div class="card-header bg-white py-3">
+            <h5 class="mb-0 fw-bold"><i class="bi bi-people-fill me-2 text-primary"></i>Colaboradores</h5>
+          </div>
+          <div class="card-body p-0">
+            {% if entorno_trabajo.colaboradores.exists %}
+              <ul class="list-group list-group-flush">
+                {% for colaborador in entorno_trabajo.colaboradores.all %}
+                  <li class="list-group-item px-4 py-3 d-flex flex-column flex-sm-row align-items-sm-center">
+                    <div class="d-flex align-items-center mb-2 mb-sm-0">
+                      <i class="bi bi-person-circle fs-3 me-3 text-muted"></i>
+                      <div>
+                        <strong class="d-block">{{ colaborador.username }}</strong>
+                        <small class="text-muted">{{ colaborador.email }}</small>
+                      </div>
+                    </div>
+                    <div class="ms-sm-auto d-flex gap-2">
+                      {% if request.user == entorno_trabajo.administrador %}
+                        <a href="{% url 'app_estadisticas:estadisticas_colaborador' entorno_trabajo.id colaborador.id %}" class="btn btn-sm btn-outline-info" title="Ver estadísticas">
+                          <i class="bi bi-bar-chart-line"></i>
+                        </a>
+                      {% endif %}
+                      <form method="post" action="{% url 'app_entornos_trabajo:gestionar_entorno' %}" class="d-inline">
+                        {% csrf_token %}
+                        <input type="hidden" name="eliminar_colaborador_id" value="{{ colaborador.id }}">
+                        <button type="submit" class="btn btn-sm btn-outline-danger" title="Eliminar colaborador" onclick="return confirm('¿Estás seguro de que quieres eliminar a este colaborador?');">
+                          <i class="bi bi-trash3"></i>
+                        </button>
+                      </form>
+                    </div>
+                  </li>
+                {% endfor %}
+              </ul>
+            {% else %}
+              <div class="text-center p-5">
+                <i class="bi bi-person-plus display-4 text-muted mb-3"></i>
+                <p class="mb-0">Aún no hay colaboradores.</p>
+              </div>
+            {% endif %}
+          </div>
+          <div class="card-footer bg-light p-4">
+            <h6 class="mb-3 fw-semibold"><i class="bi bi-person-plus-fill me-2"></i>Agregar Nuevo Colaborador</h6>
+            <form method="post" action="{% url 'app_entornos_trabajo:agregar_colaborador' %}">
+              {% csrf_token %}
+              <div class="input-group">
+                {% render_field form_agregar_colaborador.usuario_o_email class+="form-control" placeholder="Nombre de usuario o email" %}
+                <button type="submit" class="btn btn-primary"><i class="bi bi-plus-lg me-1"></i> Agregar</button>
+              </div>
+              {% if form_agregar_colaborador.usuario_o_email.errors %}{% for error in form_agregar_colaborador.usuario_o_email.errors %}<div class="text-danger small mt-1">{{ error }}</div>{% endfor %}{% endif %}
+              {% if form_agregar_colaborador.non_field_errors %}{% for error in form_agregar_colaborador.non_field_errors %}<div class="text-danger small mt-1">{{ error }}</div>{% endfor %}{% endif %}
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Columna Lateral: Detalles y Panel de Admin -->
+      <div class="col-lg-4">
+        <div class="card shadow-sm mb-4">
+          <div class="card-header bg-white py-3">
+            <h5 class="mb-0 fw-bold"><i class="bi bi-info-circle-fill me-2 text-primary"></i>Detalles del Entorno</h5>
+          </div>
+          <div class="card-body p-4">
+            <form method="post" action="{% url 'app_entornos_trabajo:gestionar_entorno' %}" class="mb-4">
+              {% csrf_token %}
+              <label class="form-label small text-muted">Nombre del Entorno</label>
+              <div class="input-group">
+                <input type="text" class="form-control" name="nombre_entorno_actualizar" value="{{ entorno_trabajo.nombre|default_if_none:'' }}" placeholder="Asigna un nombre">
+                <button class="btn btn-outline-primary" type="submit" name="actualizar_nombre_entorno" title="Guardar nombre"><i class="bi bi-check-lg"></i></button>
+              </div>
+            </form>
+            <p class="mb-2"><strong class="text-muted">Admin:</strong> {{ entorno_trabajo.administrador.username }}</p>
+            <p class="mb-0"><strong class="text-muted">Creado:</strong> {{ entorno_trabajo.fecha_creacion|date:"d/m/Y" }}</p>
+          </div>
+        </div>
+
+        {% if request.user == entorno_trabajo.administrador %}
+          <div class="card shadow-sm text-center bg-primary text-white">
+            <div class="card-body p-4">
+              <h5 class="card-title fw-bold mb-3"><i class="bi bi-tools me-2"></i>Panel de Admin</h5>
+              <p class="small opacity-75">Gestiona los productos compartidos en el catálogo de este entorno.</p>
+              <a href="{% url 'app_catalogo_entorno:catalogo_entorno' entorno_trabajo.id %}" class="btn btn-light w-100">
+                <i class="bi bi-folder-symlink me-1"></i>Gestionar Catálogo
+              </a>
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  {% else %}
+    <!-- Tarjeta para Crear Entorno -->
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="card text-center shadow border-0" style="background: linear-gradient(135deg, #f8f9fa, #ffffff);">
+          <div class="card-body p-5">
+            <i class="bi bi-stars display-3 text-warning mb-3"></i>
+            <h2 class="card-title fw-bold">Crea tu Entorno de Trabajo</h2>
+            <p class="lead text-muted mb-4">Organiza tus productos y colabora con tu equipo en un espacio de trabajo compartido.</p>
+            <form method="post" action="{% url 'app_entornos_trabajo:gestionar_entorno' %}" class="mx-auto" style="max-width: 400px;">
+              {% csrf_token %}
+              <div class="mb-3">
+                {% render_field form_creacion.nombre class+="form-control form-control-lg text-center" placeholder="Ej: Mi Tienda Online" %}
+                {% for error in form_creacion.nombre.errors %}<div class="invalid-feedback d-block">{{ error }}</div>{% endfor %}
+              </div>
+              <button type="submit" class="btn btn-primary btn-lg w-100"><i class="bi bi-plus-circle-fill me-2"></i>Crear Entorno</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
+  <!-- Lista de Entornos -->
+  <div class="mt-5">
+    <h4 class="mb-3"><i class="bi bi-grid-fill me-2"></i>Mis Entornos</h4>
+    <div class="bg-light rounded-3 p-3">
+      {% for entorno in entornos %}
+        <div class="d-flex align-items-center justify-content-between px-2 py-1 {% if entorno.id == entorno_activo_id %}bg-primary bg-opacity-10 rounded{% endif %}">
+          <span>
+            {{ entorno.nombre }}
+            {% if entorno.administrador == user %}
+              <span class="badge bg-primary ms-2">Admin</span>
+            {% elif user in entorno.colaboradores.all %}
+              <span class="badge bg-success ms-2">Colaborador</span>
+            {% endif %}
+          </span>
+          {% if entorno.id != entorno_activo_id %}
+            <a href="{% url 'app_entornos_trabajo:activar_entorno_sesion' entorno.id %}" class="btn btn-sm btn-outline-primary ms-2">Activar</a>
+          {% else %}
+            <span class="badge bg-primary ms-2">Activo</span>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}
