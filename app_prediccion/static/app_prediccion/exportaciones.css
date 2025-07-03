@@ -14,62 +14,107 @@
   position: relative;
   z-index: 2;
 }
+.exportaciones-glass {
+  background: #fff !important;      /* Fondo blanco sólido */
+  border-radius: 2.5rem;
+  box-shadow: 0 8px 32px 0 #2346a740;
+  border: 1.5px solid #e5e7eb33;
+  backdrop-filter: none !important; /* Elimina cualquier blur */
+  margin-top: 3.5rem;
+  margin-bottom: 2.5rem;
+  padding: 2.5rem 2rem;
+  max-width: 900px;
+}
+.section-title {
+  color: #2346a7;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 2.2rem;
+  text-shadow: 0 2px 8px #2346a71a;
+}
 .export-list .list-group-item {
   border: none;
-  border-radius: 1rem;
-  margin-bottom: 1rem;
-  box-shadow: 0 2px 8px rgba(44,62,80,0.07);
+  border-radius: 1.2rem;
+  margin-bottom: 1.2rem;
+  box-shadow: 0 2px 12px rgba(44,62,80,0.10);
+  background: rgba(255,255,255,0.85);
   transition: box-shadow 0.2s, background 0.2s;
-  background: #f8fafc;
+  padding: 1.2rem 1.5rem;
+  display: flex;
+  align-items: center;
 }
 .export-list .list-group-item:hover {
-  box-shadow: 0 4px 16px rgba(44,62,80,0.13);
+  box-shadow: 0 4px 24px rgba(44,62,80,0.18);
   background: #eaf0fa;
 }
 .export-icon {
-  font-size: 1.7rem;
-  color: #2346a7;
+  font-size: 2.2rem;
+  color: #396ae8;
   vertical-align: middle;
 }
 .export-file-info {
-  max-width: 65%;
   min-width: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 .export-filename {
-  font-weight: 500;
+  font-weight: 600;
   color: #2346a7;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   display: block;
   max-width: 100%;
+  font-size: 1.15rem;
 }
 .export-date {
-  font-size: 0.95em;
+  font-size: 0.98em;
   color: #6c757d;
 }
 .btn-gradient {
   background: linear-gradient(90deg, #182848, #4b6cb7);
   color: #fff;
   border: none;
-  border-radius: 0.7rem;
+  border-radius: 0.9rem;
   font-weight: 600;
   letter-spacing: 0.5px;
-  transition: transform 0.15s, opacity 0.15s;
+  transition: transform 0.15s, opacity 0.15s, box-shadow 0.18s;
+  box-shadow: 0 2px 8px #2346a71a;
+  padding: 0.7em 1.5em;
+  font-size: 1.08rem;
 }
 .btn-gradient:hover {
-  transform: scale(1.04);
+  transform: scale(1.06);
   opacity: 0.93;
   color: #fff;
+  box-shadow: 0 4px 16px #2346a72a;
 }
 .btn-download {
-  min-width: 130px;
-  max-width: 130px;
+  min-width: 140px;
+  max-width: 140px;
   text-align: center;
   padding-left: 0;
   padding-right: 0;
   white-space: nowrap;
+}
+
+@media (max-width: 991px) {
+  .exportaciones-glass {
+    border-radius: 1rem;
+    padding: 1.2rem !important;
+    max-width: 98vw;
+  }
+  .export-list .list-group-item {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem 1rem;
+  }
+  .btn-download {
+    width: 100%;
+    min-width: unset;
+    max-width: unset;
+    margin-top: 0.7rem;
+  }
 }

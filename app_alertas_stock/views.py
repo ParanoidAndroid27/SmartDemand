@@ -12,8 +12,8 @@ def ver_alertas(request):
     productos_con_alerta = []
     entorno_actual = None
     
-    # CORRECCIÓN AQUÍ: Usamos 'entorno_actual_id'
-    entorno_activo_id = request.session.get('entorno_actual_id')
+    # CORRECCIÓN AQUÍ: Usamos 'entorno_activo_id' en lugar de 'entorno_actual_id'
+    entorno_activo_id = request.session.get('entorno_activo_id')
 
     if entorno_activo_id:
         try:
@@ -37,7 +37,8 @@ def ver_alertas(request):
 
 @login_required
 def configurar_alertas(request):
-    entorno_activo_id = request.session.get('entorno_actual_id')
+    # CORRECCIÓN AQUÍ: Usamos 'entorno_activo_id' en lugar de 'entorno_actual_id'
+    entorno_activo_id = request.session.get('entorno_activo_id')
     if not entorno_activo_id:
         messages.warning(request, 'Para configurar alertas, primero debes seleccionar un entorno de trabajo.')
         return redirect('app_entornos_trabajo:listar_y_seleccionar_entornos')

@@ -182,17 +182,33 @@
   });
 
   // Loader para el botón de exportar PDF (si no es un form)
+  /*
   const exportBtn = document.querySelector('a[href*="exportar_pdf"]');
   if (exportBtn) {
     exportBtn.addEventListener('click', function() {
       document.getElementById('loader').style.display = 'flex';
     });
   }
+  */
 
   // Activar tooltips de Bootstrap
   var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
   var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
     return new bootstrap.Tooltip(tooltipTriggerEl)
   })
+
+  // Nueva función para descargar PDF
+  document.getElementById('btnDescargar').addEventListener('click', () => {
+    document.getElementById('loader').style.display = 'flex';
+    fetch('/app_prediccion/exportar_predicciones_pdf?producto=ID_DEL_PRODUCTO')
+      .then(response => response.blob())
+      .then(blob => {
+        const url = window.URL.createObjectURL(blob);
+        window.location.href = url;
+      })
+      .catch(error => {
+        console.error(error);
+      })
+  });
 </script>
 {% endblock %}

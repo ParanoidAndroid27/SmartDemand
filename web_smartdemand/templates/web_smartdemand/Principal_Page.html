@@ -4,115 +4,113 @@
 {% block title %}SmartDemand{% endblock %}
 
 {% block content %}
-  <!-- BANNER SOLO IMAGEN -->
-  <section class="hero-banner">
-    <img src="{% static 'img/Logofinal.png' %}" alt="Banner SmartDemand" class="w-100 hero-img">
-  </section>
+<link rel="stylesheet" href="{% static 'css/modern_styles.css' %}">
 
-  <!-- CARRUSEL DE SOLUCIONES MEJORADO -->
-  <section class="py-5 bg-white position-relative">
-    <div class="container">
-      <!-- TÍTULO -->
-      <div class="text-center mb-5">
-        <h2 class="section-title">
-          <i class="bi bi-stars text-primary me-2"></i> NUESTRAS SOLUCIONES
-        </h2>
-        <p class="lead text-muted">Transforma tu negocio con herramientas inteligentes y visuales.</p>
+<!-- BANNER SOLO IMAGEN -->
+<section class="hero-banner">
+  <img src="{% static 'img/Logofinal.png' %}" alt="Banner SmartDemand" class="w-100 hero-img">
+</section>
+
+<!-- SECCIÓN SOLUCIONES -->
+<section class="py-5 solutions-section">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="section-title">NUESTRAS SOLUCIONES</h2>
+      <p class="lead text-muted">Transforma tu negocio con herramientas inteligentes y visuales.</p>
+    </div>
+    <div id="carouselSoluciones" class="carousel slide">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="text-center p-lg-5 p-4">
+            <div class="icon-box">
+              <i class="bi bi-graph-up-arrow display-4 text-primary"></i>
+            </div>
+            <h3 class="fw-bold mb-2">Predicción Inteligente</h3>
+            <p class="text-muted px-md-5">Aprovecha estimaciones precisas para aumentar tus ventas.</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="text-center p-lg-5 p-4">
+            <div class="icon-box">
+              <i class="bi bi-speedometer2 display-4 text-primary"></i>
+            </div>
+            <h3 class="fw-bold mb-2">Panel Interactivo</h3>
+            <p class="text-muted px-md-5">Gestiona tus datos de forma intuitiva y amigable.</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="text-center p-lg-5 p-4">
+            <div class="icon-box">
+              <i class="bi bi-bar-chart-line display-4 text-primary"></i>
+            </div>
+            <h3 class="fw-bold mb-2">Análisis de Ventas</h3>
+            <p class="text-muted px-md-5">Identifica oportunidades y patrones de consumo con claridad.</p>
+          </div>
+        </div>
       </div>
-
-      <!-- CARRUSEL -->
-      <div id="carouselSoluciones" class="carousel slide">
-        <div class="carousel-inner shadow-sm rounded-4 bg-light p-5">
-          <!-- Slide 1 -->
-          <div class="carousel-item active">
-            <div class="text-center">
-              <i class="bi bi-graph-up-arrow display-3 text-primary mb-3"></i>
-              <h3 class="fw-bold">Predicción Inteligente</h3>
-              <p class="text-muted lead">Anticipa tu demanda con modelos de IA y toma decisiones más certeras.</p>
-            </div>
-          </div>
-          <!-- Slide 2 -->
-          <div class="carousel-item">
-            <div class="text-center">
-              <i class="bi bi-speedometer2 display-3 text-success mb-3"></i>
-              <h3 class="fw-bold">Dashboard Interactivo</h3>
-              <p class="text-muted lead">Visualiza tu negocio en tiempo real con tableros dinámicos y amigables.</p>
-            </div>
-          </div>
-          <!-- Slide 3 -->
-          <div class="carousel-item">
-            <div class="text-center">
-              <i class="bi bi-bar-chart-line display-3 text-warning mb-3"></i>
-              <h3 class="fw-bold">Análisis de Ventas</h3>
-              <p class="text-muted lead">Descubre patrones de consumo y oportunidades de mejora con gráficos claros.</p>
-            </div>
-          </div>
-        </div>
-        <!-- Controles -->
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselSoluciones" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon"></span>
-          <span class="visually-hidden">Anterior</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselSoluciones" data-bs-slide="next">
-          <span class="carousel-control-next-icon"></span>
-          <span class="visually-hidden">Siguiente</span>
-        </button>
-        <!-- Indicadores -->
-        <div class="carousel-indicators position-relative mt-4" style="bottom: 0;">
-          <button type="button" data-bs-target="#carouselSoluciones" data-bs-slide-to="0" class="active" aria-current="true"></button>
-          <button type="button" data-bs-target="#carouselSoluciones" data-bs-slide-to="1"></button>
-          <button type="button" data-bs-target="#carouselSoluciones" data-bs-slide-to="2"></button>
-        </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselSoluciones" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Anterior</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselSoluciones" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Siguiente</span>
+      </button>
+      <div class="carousel-indicators position-relative mt-3">
+        <button type="button" data-bs-target="#carouselSoluciones" data-bs-slide-to="0" class="active"></button>
+        <button type="button" data-bs-target="#carouselSoluciones" data-bs-slide-to="1"></button>
+        <button type="button" data-bs-target="#carouselSoluciones" data-bs-slide-to="2"></button>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- PRODUCTOS DESTACADOS MEJORADO -->
-  <section class="py-5 bg-light">
-    <div class="container">
-      <div class="text-center mb-5">
-        <h2 class="section-title">🌟 Productos Destacados</h2>
-        <p class="lead text-muted">Explora nuestros artículos más populares y recomendados por nuestros clientes.</p>
-      </div>
-      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-        {% if productos_destacados %}
-          {% for prod in productos_destacados %}
-          <div class="col">
-            <div class="card product-card h-100 shadow glass-card border-0">
-              <!-- Imagen y etiqueta -->
-              <div class="position-relative">
-                <img src="{{ prod.imagen.url }}" class="card-img-top" alt="{{ prod.nombre }}">
-                <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-3 fw-semibold rounded-pill px-3 py-1 shadow-sm">
-                  🌟 Destacado
-                </span>
-              </div>
-              <!-- Información -->
-              <div class="card-body d-flex flex-column p-4">
-                <h5 class="card-title fw-bold text-primary">{{ prod.nombre }}</h5>
-                <p class="card-text text-muted mb-3">{{ prod.categoria.nombre|default:"Sin categoría" }}</p>
-                <!-- Precio y acción -->
-                <div class="mt-auto d-flex justify-content-between align-items-center">
-                  <span class="fs-5 fw-bolder text-dark">${{ prod.precio_unitario }}</span>
-                  <a href="{% url 'app_gestion_productos:lista_productos' %}" class="btn btn-gradient-lista-ventas btn-sm">
-                    Ver más
-                  </a>
-                </div>
+<!-- PRODUCTOS DESTACADOS -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="section-title">Productos Destacados</h2>
+      <p class="lead text-muted">Aprovecha nuestras mejores ofertas y soluciones.</p>
+    </div>
+    <div class="row g-4 g-lg-5">
+      {% if productos_destacados %}
+        {% for prod in productos_destacados %}
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card product-card h-100 shadow-sm">
+            <div class="position-relative">
+              <img src="{{ prod.imagen.url }}" class="card-img-top" alt="{{ prod.nombre }}">
+              <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-3 fw-semibold rounded-pill px-3 py-2 shadow-sm">
+                Destacado
+              </span>
+            </div>
+            <div class="card-body d-flex flex-column p-4">
+              <h5 class="card-title fw-bold">{{ prod.nombre }}</h5>
+              <p class="card-text text-muted small">
+                {{ prod.categoria.nombre|default:"Sin categoría" }}
+              </p>
+              <div class="mt-auto d-flex justify-content-between align-items-center">
+                <span class="fs-5 fw-bolder text-primary">${{ prod.precio_unitario }}</span>
+                <a href="{% url 'app_gestion_productos:lista_productos' %}" 
+                   class="btn btn-gradient-custom rounded-pill px-4">
+                  Ver más
+                </a>
               </div>
             </div>
           </div>
-          {% endfor %}
-        {% else %}
-          <div class="alert alert-info text-center mx-auto my-5 p-4 shadow-sm" style="max-width: 400px;">
-            <i class="bi bi-star text-warning" style="font-size:2rem;"></i>
-            <div class="mt-2 fw-semibold" style="color:#2346a7;">
-              No tienes productos destacados aún.
-            </div>
-            <div class="small text-muted">
-              Marca productos como destacados para verlos aquí.
+        </div>
+        {% endfor %}
+      {% else %}
+        <div class="row" style="min-height: 40vh;">
+          <div class="col-12 d-flex justify-content-center align-items-center">
+            <div class="card p-4 border-0 shadow-sm text-center" style="max-width: 450px; border-radius: 1rem;">
+              <i class="bi bi-info-circle h1 text-primary"></i>
+              <h4 class="mt-3 mb-2 fw-bold">No hay productos destacados</h4>
+              <p class="text-muted mb-0">Cuando marques un producto como destacado, aparecerá aquí.</p>
             </div>
           </div>
-        {% endif %}
-      </div>
+        </div>
+      {% endif %}
     </div>
-  </section>
+  </div>
+</section>
 {% endblock %}

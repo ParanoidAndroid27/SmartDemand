@@ -9,23 +9,24 @@
 
 {% block content %}
 <div class="glass-panel mx-auto my-5" style="max-width: 500px;">
+  <div class="profile-bg rounded-top"></div>
   <div class="profile-card text-center py-4 px-3">
     <div class="d-flex justify-content-center">
       {% if perfil.foto_perfil %}
-        <img src="{{ perfil.foto_perfil.url }}" class="profile-avatar" alt="Avatar">
+        <img src="{{ perfil.foto_perfil.url }}" class="profile-avatar shadow" alt="Avatar">
       {% else %}
-        <div class="profile-avatar bg-light text-muted">
-          <i class="bi bi-person-circle" style="font-size: 2rem;"></i>
+        <div class="profile-avatar bg-light text-muted shadow">
+          <i class="bi bi-person-circle" style="font-size: 3rem;"></i>
         </div>
       {% endif %}
     </div>
     <h2 class="mt-3 fw-bold">{{ perfil.user.get_full_name|default:perfil.user.username }}</h2>
-    <p class="text-muted">{{ perfil.user.email }}</p>
-    <span class="badge bg-primary py-2 px-3 mt-2 fs-6">
+    <p class="text-muted mb-1">{{ perfil.user.email }}</p>
+    <span class="badge bg-primary py-2 px-3 mt-2 fs-6 mb-3">
       <i class="bi bi-person-badge me-2"></i> Usuario
     </span>
     <div class="profile-actions">
-      <a href="{% url 'app_perfil:editar_perfil' %}" class="btn btn-primary">
+      <a href="{% url 'app_perfil:editar_perfil' %}" class="btn btn-primary w-100">
         <i class="bi bi-pencil-square me-2"></i> Editar Perfil
       </a>
     </div>

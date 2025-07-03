@@ -7,19 +7,22 @@
 {% endblock %}
 
 {% block content %}
-{# <div class="exportaciones-bg"></div> #}
-<div class="exportaciones-card mx-auto mt-5" style="max-width: 600px;">
-  <h2 class="mb-4 text-center section-title" style="color:#2346a7;">Últimas 10 exportaciones</h2>
+<div class="exportaciones-glass mx-auto">
+  <h2 class="mb-4 text-center section-title">
+    <i class="bi bi-file-earmark-arrow-down me-2"></i>Últimas 10 exportaciones
+  </h2>
   {% if exportaciones %}
     <ul class="list-group export-list">
       {% for exp in exportaciones %}
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-          <div class="export-file-info">
-            <i class="bi bi-file-earmark-arrow-down export-icon me-2"></i>
-            <span class="export-filename">{{ exp.archivo.name|slice:"20:" }}</span><br>
-            <span class="export-date">{{ exp.fecha|date:"d/m/Y H:i" }}</span>
+        <li class="list-group-item d-flex flex-column flex-md-row justify-content-between align-items-md-center align-items-start gap-2">
+          <div class="d-flex align-items-center flex-grow-1 gap-3">
+            <i class="bi bi-file-earmark-arrow-down export-icon flex-shrink-0"></i>
+            <div class="export-file-info">
+              <span class="export-filename">{{ exp.archivo.name|slice:"20:" }}</span>
+              <span class="export-date">{{ exp.fecha|date:"d/m/Y H:i" }}</span>
+            </div>
           </div>
-          <a href="{{ exp.archivo.url }}" class="btn btn-gradient btn-download" download>
+          <a href="{{ exp.archivo.url }}" class="btn btn-gradient btn-download mt-2 mt-md-0" download>
             <i class="bi bi-download me-1"></i> Descargar
           </a>
         </li>

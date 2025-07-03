@@ -1,0 +1,81 @@
+/* Estilos para un look más moderno y profesional */
+:root {
+  --primary-color-rgb: 13, 110, 253;
+  --section-bg-light: #f8f9fa;
+  --card-bg-color: rgba(255, 255, 255, 0.6);
+  --card-border-color: rgba(255, 255, 255, 0.2);
+  --text-color-dark: #212529;
+  --text-color-muted: #6c757d;
+}
+
+body {
+  background-color: var(--section-bg-light);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.section-title {
+  font-weight: 700;
+  color: var(--text-color-dark);
+}
+
+/* Sección Soluciones */
+.solutions-section {
+  background: linear-gradient(150deg, #ffffff 60%, #fafcff 100%);
+}
+
+.carousel-item .icon-box {
+  background-color: rgba(var(--primary-color-rgb), 0.08);
+  width: 80px;
+  height: 80px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin-bottom: 1.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.carousel-item:hover .icon-box {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.1);
+}
+
+#carouselSoluciones .carousel-control-prev-icon,
+#carouselSoluciones .carousel-control-next-icon {
+  background-color: rgba(0,0,0,0.25);
+  border-radius: 50%;
+  padding: 1rem;
+}
+
+/* Productos Destacados */
+.product-card {
+  background: var(--card-bg-color);
+  backdrop-filter: blur(6px);
+  border: 1px solid var(--card-border-color);
+  border-radius: 1rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.08);
+}
+
+.product-card .card-img-top {
+  object-fit: cover;
+  height: 200px;
+}
+
+.btn-gradient-custom {
+  background: linear-gradient(45deg, #0d6efd, #6f42c1);
+  border: none;
+  color: white;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(111, 66, 193, 0.4);
+}
+
+.btn-gradient-custom:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(111, 66, 193, 0.6);
+}

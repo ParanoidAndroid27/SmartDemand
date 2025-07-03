@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="glass-panel p-4 p-md-5 mb-5 mx-auto" style="max-width: 1100px;">
+<div class="glass-panel p-4 p-md-5 my-5 mx-auto" style="max-width: 1100px;">
   <div class="d-flex justify-content-between align-items-center mb-4">
     <div>
       <h2 class="section-title mb-1"><i class="bi bi-bell-fill me-2"></i>Centro de Alertas</h2>
@@ -59,8 +59,8 @@
                   </span>
                 </div>
                 <div class="col-md-auto">
-                  <a href="{% url 'app_gestion_productos:editar_producto' alerta.producto.id %}" class="btn btn-outline-secondary btn-sm w-100">
-                    <i class="bi bi-pencil-square me-1"></i>Revisar
+                  <a href="{% url 'app_gestion_productos:detalle_producto' alerta.producto.id %}" class="btn btn-outline-secondary btn-sm w-100">
+                    <i class="bi bi-eye-fill me-1"></i>Revisar
                   </a>
                 </div>
               </div>

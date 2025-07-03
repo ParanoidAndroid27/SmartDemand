@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="glass-panel p-4 p-md-5 mb-5 mx-auto" style="max-width: 1100px;">
+<div class="glass-panel p-4 p-md-5 my-5 mx-auto" style="max-width: 1100px;">
   <form method="post">
     {% csrf_token %}
     {{ formset.management_form }}
@@ -78,7 +78,7 @@
           </table>
         </div>
       </div>
-      <div class="card-footer bg-light bg-gradient border-0 text-end p-3">
+      <div class="card-footer bg-light bg-gradient border-0 text-end p-3 sticky-bottom">
         <button type="submit" class="btn btn-primary btn-lg"><i class="bi bi-save-fill me-2"></i>Guardar Configuración</button>
       </div>
     </div>

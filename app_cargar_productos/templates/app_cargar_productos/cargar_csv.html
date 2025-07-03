@@ -2,50 +2,71 @@
 {% load static %}
 {% load widget_tweaks %}
 
-{% block title %}Cargar Productos por CSV - SmartDemand{% endblock %}
+{% block title %}Cargar Ventas por CSV - SmartDemand{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'app_agregar_productos/css/cargar_csv.css' %}">
+<link rel="stylesheet" href="{% static 'app_ventas_productos/cargar_ventas_csv.css' %}">
 {% endblock %}
 
 {% block content %}
-<div class="glass-panel p-4 shadow-lg border-0 mb-5 mx-auto" style="max-width: 700px;">
-  <div class="text-center mb-3">
-    <i class="bi bi-upload display-3 text-success"></i>
-  </div>
-  <h2 class="section-title text-center mb-2">Cargar Productos desde Archivo CSV</h2>
-  <p class="text-muted text-center mb-4">Sube tu archivo CSV para agregar productos de forma masiva.</p>
-
-  {% if messages %}
-    <div>
-      {% for message in messages %}
-        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-          {{ message }}
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+<main class="container flex-grow-1 my-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="glass-panel p-4 p-md-5">
+        <div class="text-center mb-4">
+          <h2 class="section-title"><i class="bi bi-cloud-arrow-up-fill me-2"></i>Cargar Ventas desde CSV</h2>
+          <p class="text-muted">Arrastra y suelta tu archivo o haz clic para seleccionarlo.</p>
         </div>
-      {% endfor %}
-    </div>
-  {% endif %}
 
-  <form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    <div class="mb-3 text-center">
-      <label for="id_archivo_csv" class="form-label fw-semibold mb-2">Selecciona tu archivo CSV</label>
-      {{ form.archivo_csv }}
-    </div>
-    <div class="d-flex justify-content-center">
-      <button type="submit" class="btn btn-success btn-lg px-5">Cargar</button>
-    </div>
-  </form>
+        <!-- Mensajes -->
+        {% if messages %}
+          {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+              {{ message }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          {% endfor %}
+        {% endif %}
 
-  <div class="mt-4">
-    <p><strong>Formato esperado (CSV):</strong></p>
-    <pre class="bg-light rounded-3 p-2">nombre,descripcion,categoria,stock,precio_unitario</pre>
+        <!-- Formulario de carga -->
+        <form method="POST" enctype="multipart/form-data" class="mb-4">
+          {% csrf_token %}
+          <label for="{{ form.archivo_csv.id_for_label }}" class="custom-file-upload">
+            <i class="bi bi-file-earmark-arrow-up-fill icon"></i>
+            <div class="text-lead mt-2">Selecciona un archivo</div>
+            <div class="text-muted">o arrástralo aquí</div>
+            <span id="file-upload-filename"></span>
+          </label>
+          {% render_field form.archivo_csv style="display:none;" %}
+          
+          <div class="d-grid mt-4">
+            <button type="submit" class="btn btn-success btn-lg"><i class="bi bi-check-circle-fill me-2"></i>Cargar y procesar archivo</button>
+          </div>
+        </form>
+
+        <!-- Instrucciones -->
+        <div class="alert instructions-box mt-4" role="alert">
+          <h5 class="alert-heading"><i class="bi bi-info-circle-fill me-2"></i>Formato del archivo CSV</h5>
+          <p>Asegúrate de que tu archivo CSV tenga las siguientes columnas en este orden y sin cabecera:</p>
+          <pre class="p-2 mb-0">nombre,descripcion,categoria,stock,precio_unitario</pre>
+        </div>
+
+        <!-- Botones de acción -->
+        <div class="d-flex flex-column flex-md-row justify-content-center gap-3 mt-4">
+          <a href="{% url 'app_ventas_productos:listar_ventas' %}" class="btn btn-outline-primary">
+            <i class="bi bi-list-ul me-2"></i>Ver Lista de Ventas
+          </a>
+          <a href="{% url 'app_ventas_productos:registrar_venta' %}" class="btn btn-outline-secondary">
+            <i class="bi bi-pencil-square me-2"></i>Registrar Venta Manualmente
+          </a>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
+</main>
 
 <!-- Loader Spinner -->
-<div id="loader" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(255,255,255,0.7); z-index:9999; align-items:center; justify-content:center;">
+<div id="loader" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; display:flex; align-items:center; justify-content:center; flex-direction: column;">
   <div class="spinner-border text-primary" style="width:4rem; height:4rem;" role="status">
     <span class="visually-hidden">Cargando...</span>
   </div>
@@ -55,11 +76,28 @@
 
 {% block extra_js %}
 <script>
-  // Loader solo para el formulario de carga CSV
-  document.querySelectorAll('form').forEach(form => {
-    form.addEventListener('submit', function() {
+  // Oculta el loader al cargar/mostrar la página para evitar que se quede "pegado" al usar el botón de retroceso del navegador.
+  window.addEventListener('pageshow', function(event) {
+    document.getElementById('loader').style.display = 'none';
+  });
+
+  // Muestra el loader al enviar el formulario, solo si hay un archivo
+  document.querySelector('form').addEventListener('submit', function() {
+    if (document.getElementById('{{ form.archivo_csv.id_for_label }}').files.length > 0) {
       document.getElementById('loader').style.display = 'flex';
-    });
+    }
+  });
+
+  // Muestra el nombre del archivo seleccionado en la UI
+  const fileInput = document.getElementById('{{ form.archivo_csv.id_for_label }}');
+  const filenameDisplay = document.getElementById('file-upload-filename');
+  
+  fileInput.addEventListener('change', function() {
+    if (this.files.length > 0) {
+      filenameDisplay.textContent = 'Archivo seleccionado: ' + this.files[0].name;
+    } else {
+      filenameDisplay.textContent = '';
+    }
   });
 </script>
 {% endblock %}
